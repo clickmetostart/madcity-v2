@@ -184,7 +184,7 @@ export default function CashAppHome() {
                 <div className={styles.verticalList} style={{ gap: '1rem', marginBottom: '2rem' }}>
                   {processSteps.map(step => (
                     <div key={step.num} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                      <div style={{ fontSize: '2rem', fontWeight: 900, opacity: 0.2 }}>{step.num}</div>
+                      <div style={{ fontSize: '2rem', fontWeight: 900, opacity: 0.4 }}>{step.num}</div>
                       <div>
                         <h3 style={{ fontSize: '1.2rem', fontWeight: 800 }}>{step.title}</h3>
                         <p className={styles.sectionText}>{step.desc}</p>
