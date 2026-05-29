@@ -286,6 +286,6 @@ li { margin-bottom: 0.4rem; color: var(--text-secondary); }
 }
 
 /* Hide global layout footer on pages that have the CashAppHome slider container */
-body:has([class*="sliderContainer"]) footer {
+body:has([class*="scrollContainer"]) footer {
   display: none !important;
 }
