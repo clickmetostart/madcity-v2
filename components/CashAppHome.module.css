@@ -1,14 +1,15 @@
 /* 
-  Sequential Sticky Layout: 
-  Each section has a defined large height (e.g., 200vh) but its inner content is `position: sticky; top: 0; height: 100vh`.
-  This creates a pinning effect where the content stays on screen while you scroll through the section's height.
-  Because the sections are sequential in the document flow, the next section will naturally scroll up and *cover* the previous one.
+  Sequential Sticky Layout with Strict Color Blocking
 */
 
 .mainWrapper {
   position: relative;
   width: 100%;
   background: #000;
+  --cash-green: #00d632;
+  --cash-black: #000000;
+  --cash-white: #ffffff;
+  --cash-gray: #f4f4f4;
 }
 
 .scrollSection {
@@ -17,12 +18,13 @@
   z-index: 1;
 }
 
-/* We increase z-index sequentially so later sections cover earlier ones */
-.scrollSection:nth-child(1) { z-index: 10; }
-.scrollSection:nth-child(2) { z-index: 20; background: #fff; border-top: 1px solid #eee; }
-.scrollSection:nth-child(3) { z-index: 30; background: var(--accent); }
-.scrollSection:nth-child(4) { z-index: 40; background: #000; }
-.scrollSection:nth-child(5) { z-index: 50; background: #fff; }
+/* Sequential z-index and explicit backgrounds */
+.scrollSection:nth-child(1) { z-index: 10; background: var(--cash-black); color: var(--cash-white); }
+.scrollSection:nth-child(2) { z-index: 20; background: var(--cash-white); color: var(--cash-black); box-shadow: 0 -20px 40px rgba(0,0,0,0.1); }
+.scrollSection:nth-child(3) { z-index: 30; background: var(--cash-gray); color: var(--cash-black); }
+.scrollSection:nth-child(4) { z-index: 40; background: var(--cash-green); color: var(--cash-black); box-shadow: 0 -20px 40px rgba(0,0,0,0.1); }
+.scrollSection:nth-child(5) { z-index: 50; background: var(--cash-black); color: var(--cash-white); }
+.scrollSection:nth-child(6) { z-index: 60; background: var(--cash-white); color: var(--cash-black); border-top: 1px solid #e0e0e0; }
 
 .stickyContent {
   position: sticky;
@@ -37,7 +39,7 @@
 
 .container {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--max-width, 1200px);
   margin: 0 auto;
   padding: 0 2.5rem;
   position: relative;
@@ -58,15 +60,16 @@
 }
 
 .sectionTitle {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(3rem, 7vw, 6rem);
   font-weight: 900;
   line-height: 0.9;
   letter-spacing: -0.04em;
   margin-bottom: 2rem;
+  text-transform: uppercase;
 }
 
 .leadText {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
   line-height: 1.5;
   font-weight: 500;
   max-width: 800px;
@@ -82,13 +85,14 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .splitLayout {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 
-/* Cards & Content */
+/* Grids */
 .loanGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -99,78 +103,106 @@
 @media (max-width: 600px) { .loanGrid { grid-template-columns: 1fr; } }
 
 .loanCard {
-  background: rgba(0,0,0,0.03);
+  background: var(--cash-white);
   padding: 2rem;
   border-radius: 1.5rem;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+  transition: transform 0.2s;
 }
-
+.loanCard:hover { transform: translateY(-5px); }
 .loanIcon { font-size: 2.5rem; margin-bottom: 1rem; }
-.loanTitle { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; }
+.loanTitle { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: currentColor; }
 .loanDesc { font-size: 0.95rem; color: #555; }
 
-/* Audience Cards */
+/* Audience Cards (Gray Bg) */
 .audienceGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  width: 100%;
+  gap: 1.5rem;
 }
 @media (max-width: 768px) { .audienceGrid { grid-template-columns: 1fr; } }
-
 .audienceCard {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
-  padding: 2.5rem;
+  background: var(--cash-white);
+  padding: 2rem;
   border-radius: 1.5rem;
-  color: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-/* Process Steps */
-.stepList {
-  display: flex;
-  flex-direction: column;
+/* Process & Stats (Green Bg) */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
-.stepItem {
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
+.statBox {
+  background: rgba(0,0,0,0.05);
+  padding: 2rem;
+  border-radius: 1rem;
 }
-.stepNum {
-  font-size: 2rem;
-  font-weight: 900;
-  color: var(--accent);
-}
-.stepText h3 {
-  font-size: 1.5rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-.stepText p {
-  color: rgba(255,255,255,0.7);
-  font-size: 1.1rem;
-}
+.statNum { font-size: 3rem; font-weight: 900; color: #000; line-height: 1; margin-bottom: 0.5rem; }
+.statLabel { font-size: 1.1rem; font-weight: 700; color: rgba(0,0,0,0.7); }
 
-/* Licensing */
+.stepList { display: flex; flex-direction: column; gap: 1.5rem; }
+.stepItem { display: flex; gap: 1.5rem; align-items: flex-start; }
+.stepNum { font-size: 2.5rem; font-weight: 900; color: rgba(0,0,0,0.2); line-height: 1; }
+.stepText h3 { font-size: 1.5rem; color: #000; margin-bottom: 0.25rem; font-weight: 800; }
+.stepText p { color: rgba(0,0,0,0.7); font-size: 1.1rem; font-weight: 500; }
+
+/* Licensing & Partners (Black Bg) */
 .stateGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 .stateChip {
-  background: rgba(0,0,0,0.05);
-  color: #000;
-  padding: 1rem 2rem;
+  background: rgba(255,255,255,0.1);
+  color: var(--cash-white);
+  padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   font-weight: 700;
   font-size: 1.1rem;
 }
 
+.partnerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+.partnerLogo {
+  filter: grayscale(100%) brightness(200%); /* Make logos white */
+  opacity: 0.6;
+  max-width: 120px;
+  max-height: 50px;
+  object-fit: contain;
+}
+
+/* Contact (White Bg) */
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.formInput {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #eee;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-family: inherit;
+}
+.formInput:focus {
+  outline: none;
+  border-color: var(--cash-green);
+}
+
 /* Buttons */
 .btnPrimary {
-  background: var(--accent);
+  background: var(--cash-green);
   color: #000;
   font-size: 1.25rem;
   font-weight: 800;
@@ -180,8 +212,10 @@
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  transition: transform 0.2s;
 }
+.btnPrimary:hover { transform: scale(1.05); }
 
 .btnDark {
   background: #000;
@@ -194,5 +228,7 @@
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+  transition: transform 0.2s;
 }
+.btnDark:hover { transform: scale(1.05); }
