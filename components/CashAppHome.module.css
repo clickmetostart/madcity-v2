@@ -2,11 +2,12 @@
   position: relative;
   width: 100%;
   background: #000;
-  /* Cash App Palette */
   --cash-green: #00D54B;
   --cash-white: #F8F6F6;
   --cash-black: #000000;
+  --cash-gray: #e6e6e6;
   overflow-x: hidden;
+  font-family: var(--font-inter, sans-serif);
 }
 
 /* === FIXED FOREGROUND LAYER === */
@@ -17,21 +18,16 @@
   width: 100%;
   height: 100vh;
   z-index: 100;
-  pointer-events: none; /* Let clicks pass through to buttons underneath */
+  pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Central Phone Placeholder */
-.phonePlaceholder {
-  width: 320px;
-  height: 650px;
+.devicePlaceholder {
   background: #111;
-  border-radius: 40px;
   border: 12px solid #222;
   box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.8);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,20 +38,19 @@
   text-transform: uppercase;
 }
 
-/* Floating Graphics Layer */
 .floatingGraphic {
   position: absolute;
-  width: 100px;
-  height: 100px;
-  background: rgba(0,0,0,0.1);
-  backdrop-filter: blur(5px);
-  border: 2px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
+  width: 120px;
+  height: 120px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  font-size: 3.5rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
 }
 
 /* === SCROLLING SECTIONS === */
@@ -65,12 +60,11 @@
   z-index: 1;
 }
 
-/* Sequential z-index so sections slide over each other */
 .scrollSection:nth-child(1) { z-index: 10; background: var(--cash-green); color: var(--cash-black); }
 .scrollSection:nth-child(2) { z-index: 20; background: var(--cash-white); color: var(--cash-black); box-shadow: 0 -20px 40px rgba(0,0,0,0.1); }
-.scrollSection:nth-child(3) { z-index: 30; background: var(--cash-green); color: var(--cash-white); }
-.scrollSection:nth-child(4) { z-index: 40; background: var(--cash-black); color: var(--cash-green); }
-.scrollSection:nth-child(5) { z-index: 50; background: var(--cash-white); color: var(--cash-black); }
+.scrollSection:nth-child(3) { z-index: 30; background: var(--cash-gray); color: var(--cash-black); }
+.scrollSection:nth-child(4) { z-index: 40; background: var(--cash-green); color: var(--cash-black); }
+.scrollSection:nth-child(5) { z-index: 50; background: var(--cash-black); color: var(--cash-white); }
 
 .stickyContent {
   position: sticky;
@@ -110,7 +104,7 @@
 }
 
 .heroWord {
-  font-size: clamp(8rem, 20vw, 22rem);
+  font-size: clamp(6rem, 15vw, 18rem);
   font-weight: 900;
   line-height: 0.8;
   letter-spacing: -0.06em;
@@ -119,7 +113,7 @@
 }
 
 .sectionTitle {
-  font-size: clamp(4rem, 10vw, 12rem);
+  font-size: clamp(3rem, 6vw, 7rem);
   font-weight: 900;
   line-height: 0.85;
   letter-spacing: -0.05em;
@@ -128,30 +122,125 @@
   color: currentColor;
 }
 
+.sectionSubTitle {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  color: currentColor;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
 .sectionText {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
   line-height: 1.5;
   font-weight: 500;
-  max-width: 400px;
-  color: currentColor;
+  color: rgba(0,0,0,0.7);
+}
+.scrollSection:nth-child(5) .sectionText {
+  color: rgba(255,255,255,0.7);
 }
 
 /* === LAYOUT UTILITIES === */
-.splitLayout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  gap: 4rem;
+.splitLayoutLeft { display: flex; align-items: center; justify-content: flex-start; height: 100%; width: 100%; }
+.splitLayoutRight { display: flex; align-items: center; justify-content: flex-end; height: 100%; width: 100%; text-align: right; }
+.splitLayoutCenter { display: flex; align-items: center; justify-content: space-between; height: 100%; width: 100%; }
+
+.textColumn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+  width: 50%;
+  pointer-events: auto; /* Allow clicking links inside */
+  z-index: 10; /* Keep above backgrounds */
 }
-.leftColumn { display: flex; flex-direction: column; justify-content: center; }
-.rightColumn { display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right; }
+
+.textColumnRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: right;
+  max-width: 600px;
+  width: 50%;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* === CONTENT GRIDS (Minimalist) === */
+.loanGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.loanItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.loanIcon { font-size: 2rem; }
+.loanItem h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.25rem; }
+.loanItem p { font-size: 0.9rem; color: rgba(0,0,0,0.6); line-height: 1.3; }
+
+.verticalList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.statNum { font-size: 3.5rem; font-weight: 900; line-height: 1; letter-spacing: -0.05em; }
+.statLabel { font-size: 1.1rem; font-weight: 700; opacity: 0.8; }
+
+.partnerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+.partnerLogo {
+  height: 40px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(200%);
+  opacity: 0.7;
+}
+
+.btnPrimary {
+  background: var(--cash-green);
+  color: #000;
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding: 1rem 2.5rem;
+  border-radius: 3rem;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: transform 0.2s;
+}
+.btnPrimary:hover { transform: scale(1.05); }
 
 @media (max-width: 900px) {
-  .splitLayout {
-    grid-template-columns: 1fr;
+  .splitLayoutLeft, .splitLayoutRight, .splitLayoutCenter {
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
   }
-  .rightColumn { align-items: center; text-align: center; }
+  .textColumn, .textColumnRight {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
+  }
+  .partnerGrid { justify-content: center; }
 }
