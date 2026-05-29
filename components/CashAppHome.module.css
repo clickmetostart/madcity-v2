@@ -1,30 +1,76 @@
-/* 
-  Sequential Sticky Layout with Strict Color Blocking
-*/
-
 .mainWrapper {
   position: relative;
   width: 100%;
   background: #000;
-  --cash-green: #00d632;
+  /* Cash App Palette */
+  --cash-green: #00D54B;
+  --cash-white: #F8F6F6;
   --cash-black: #000000;
-  --cash-white: #ffffff;
-  --cash-gray: #f4f4f4;
+  overflow-x: hidden;
 }
 
+/* === FIXED FOREGROUND LAYER === */
+.fixedLayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 100;
+  pointer-events: none; /* Let clicks pass through to buttons underneath */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Central Phone Placeholder */
+.phonePlaceholder {
+  width: 320px;
+  height: 650px;
+  background: #111;
+  border-radius: 40px;
+  border: 12px solid #222;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.8);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Floating Graphics Layer */
+.floatingGraphic {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(0,0,0,0.1);
+  backdrop-filter: blur(5px);
+  border: 2px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* === SCROLLING SECTIONS === */
 .scrollSection {
   position: relative;
   width: 100%;
   z-index: 1;
 }
 
-/* Sequential z-index and explicit backgrounds */
-.scrollSection:nth-child(1) { z-index: 10; background: var(--cash-black); color: var(--cash-white); }
+/* Sequential z-index so sections slide over each other */
+.scrollSection:nth-child(1) { z-index: 10; background: var(--cash-green); color: var(--cash-black); }
 .scrollSection:nth-child(2) { z-index: 20; background: var(--cash-white); color: var(--cash-black); box-shadow: 0 -20px 40px rgba(0,0,0,0.1); }
-.scrollSection:nth-child(3) { z-index: 30; background: var(--cash-gray); color: var(--cash-black); }
-.scrollSection:nth-child(4) { z-index: 40; background: var(--cash-green); color: var(--cash-black); box-shadow: 0 -20px 40px rgba(0,0,0,0.1); }
-.scrollSection:nth-child(5) { z-index: 50; background: var(--cash-black); color: var(--cash-white); }
-.scrollSection:nth-child(6) { z-index: 60; background: var(--cash-white); color: var(--cash-black); border-top: 1px solid #e0e0e0; }
+.scrollSection:nth-child(3) { z-index: 30; background: var(--cash-green); color: var(--cash-white); }
+.scrollSection:nth-child(4) { z-index: 40; background: var(--cash-black); color: var(--cash-green); }
+.scrollSection:nth-child(5) { z-index: 50; background: var(--cash-white); color: var(--cash-black); }
 
 .stickyContent {
   position: sticky;
@@ -39,7 +85,7 @@
 
 .container {
   width: 100%;
-  max-width: var(--max-width, 1200px);
+  max-width: var(--max-width, 1400px);
   margin: 0 auto;
   padding: 0 2.5rem;
   position: relative;
@@ -49,186 +95,63 @@
   justify-content: center;
 }
 
-/* Typography */
-.superTitle {
-  font-size: clamp(4rem, 10vw, 8rem);
+/* === TYPOGRAPHY === */
+.heroTitleWrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8vh 5vw;
+  text-align: center;
+}
+
+.heroWord {
+  font-size: clamp(8rem, 20vw, 22rem);
   font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  margin: 0;
   text-transform: uppercase;
-  margin-bottom: 1rem;
 }
 
 .sectionTitle {
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: clamp(4rem, 10vw, 12rem);
   font-weight: 900;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 0.85;
+  letter-spacing: -0.05em;
   margin-bottom: 2rem;
   text-transform: uppercase;
+  color: currentColor;
 }
 
-.leadText {
-  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+.sectionText {
+  font-size: clamp(1rem, 2vw, 1.5rem);
   line-height: 1.5;
   font-weight: 500;
-  max-width: 800px;
-  margin-bottom: 2rem;
+  max-width: 400px;
+  color: currentColor;
 }
 
-/* Layout Utilities */
+/* === LAYOUT UTILITIES === */
 .splitLayout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
   align-items: center;
+  height: 100%;
   width: 100%;
+  gap: 4rem;
 }
+.leftColumn { display: flex; flex-direction: column; justify-content: center; }
+.rightColumn { display: flex; flex-direction: column; justify-content: center; align-items: flex-end; text-align: right; }
 
 @media (max-width: 900px) {
   .splitLayout {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    text-align: center;
   }
+  .rightColumn { align-items: center; text-align: center; }
 }
-
-/* Grids */
-.loanGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-}
-@media (max-width: 1024px) { .loanGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .loanGrid { grid-template-columns: 1fr; } }
-
-.loanCard {
-  background: var(--cash-white);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.02);
-  transition: transform 0.2s;
-}
-.loanCard:hover { transform: translateY(-5px); }
-.loanIcon { font-size: 2.5rem; margin-bottom: 1rem; }
-.loanTitle { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.5rem; color: currentColor; }
-.loanDesc { font-size: 0.95rem; color: #555; }
-
-/* Audience Cards (Gray Bg) */
-.audienceGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-@media (max-width: 768px) { .audienceGrid { grid-template-columns: 1fr; } }
-.audienceCard {
-  background: var(--cash-white);
-  padding: 2rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-/* Process & Stats (Green Bg) */
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-}
-.statBox {
-  background: rgba(0,0,0,0.05);
-  padding: 2rem;
-  border-radius: 1rem;
-}
-.statNum { font-size: 3rem; font-weight: 900; color: #000; line-height: 1; margin-bottom: 0.5rem; }
-.statLabel { font-size: 1.1rem; font-weight: 700; color: rgba(0,0,0,0.7); }
-
-.stepList { display: flex; flex-direction: column; gap: 1.5rem; }
-.stepItem { display: flex; gap: 1.5rem; align-items: flex-start; }
-.stepNum { font-size: 2.5rem; font-weight: 900; color: rgba(0,0,0,0.2); line-height: 1; }
-.stepText h3 { font-size: 1.5rem; color: #000; margin-bottom: 0.25rem; font-weight: 800; }
-.stepText p { color: rgba(0,0,0,0.7); font-size: 1.1rem; font-weight: 500; }
-
-/* Licensing & Partners (Black Bg) */
-.stateGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-.stateChip {
-  background: rgba(255,255,255,0.1);
-  color: var(--cash-white);
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-}
-
-.partnerGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 2rem;
-}
-.partnerLogo {
-  filter: grayscale(100%) brightness(200%); /* Make logos white */
-  opacity: 0.6;
-  max-width: 120px;
-  max-height: 50px;
-  object-fit: contain;
-}
-
-/* Contact (White Bg) */
-.contactGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-}
-.formInput {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid #eee;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  font-family: inherit;
-}
-.formInput:focus {
-  outline: none;
-  border-color: var(--cash-green);
-}
-
-/* Buttons */
-.btnPrimary {
-  background: var(--cash-green);
-  color: #000;
-  font-size: 1.25rem;
-  font-weight: 800;
-  padding: 1.25rem 3rem;
-  border-radius: 3rem;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  margin-top: 1.5rem;
-  transition: transform 0.2s;
-}
-.btnPrimary:hover { transform: scale(1.05); }
-
-.btnDark {
-  background: #000;
-  color: #fff;
-  font-size: 1.25rem;
-  font-weight: 800;
-  padding: 1.25rem 3rem;
-  border-radius: 3rem;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-decoration: none;
-  margin-top: 1.5rem;
-  transition: transform 0.2s;
-}
-.btnDark:hover { transform: scale(1.05); }
