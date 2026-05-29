@@ -1,0 +1,163 @@
+.locationPage {
+  background: var(--bg-white);
+  padding-bottom: 4rem;
+}
+
+.hero {
+  position: relative;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #0b1c3d, #1a2a4d);
+  color: #ffffff;
+  text-align: center;
+  padding: 8rem 0 4rem;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 1.5rem 0 0;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.9);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 4rem;
+  margin-top: 4rem;
+}
+
+.mainContent h2 {
+  font-size: 2.25rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.mainContent h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin: 2.5rem 0 1rem;
+}
+
+.mainContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+
+.blurbBox {
+  background: var(--bg-slate);
+  padding: 2.5rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--gold-main);
+  margin-top: 3rem;
+}
+
+.blurbBox h3 {
+  margin-top: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.formCard {
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--primary);
+  margin-top: 3rem;
+}
+
+.formCard h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin: 3rem 0;
+}
+
+.highlightItem {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--bg-slate);
+  padding: 1.25rem;
+  border-radius: var(--border-radius);
+}
+
+.check {
+  color: var(--gold-dark);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.highlightItem p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.cityGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.cityItem {
+  padding: 0.4rem 1rem;
+  background: var(--bg-white);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.robCardWrap {
+  margin-top: 1rem;
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  .hero {
+    padding: 6rem 1.5rem 3rem;
+  }
+}

@@ -1,0 +1,502 @@
+.header {
+  position: fixed;
+  top: 36px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: all 0.3s ease;
+}
+
+.scrolled {
+  top: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  height: 100%;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navBtn, .navLink {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0 0.5rem;
+  height: 100%;
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.navBtn:hover, .navLink:hover {
+  color: var(--gold-dark);
+}
+
+.chevron {
+  font-size: 0.7rem;
+  opacity: 0.5;
+}
+
+/* ── Mega Menu ────────────────────────────────────────── */
+.megaMenu {
+  position: fixed;
+  top: 116px; /* topBar + header height */
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 3rem 0;
+}
+
+.scrolled .megaMenu {
+  top: 80px;
+}
+
+.megaVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.megaCard {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.megaCard:hover {
+  background: var(--bg-slate);
+}
+
+.megaImgWrap {
+  position: relative;
+  width: 80px;
+  height: 50px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.megaImgWrap img {
+  object-fit: contain !important;
+}
+
+.megaContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.megaContent strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--primary);
+  margin-bottom: 0.2rem;
+}
+
+.megaContent span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Services Mega ────────────────────────────────────── */
+.megaGridSimple {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 4rem;
+}
+
+.megaSide h3 {
+  font-size: 1.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.megaSide p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.megaLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.megaLinkItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.megaLinkItem:hover {
+  background: var(--bg-slate);
+}
+
+.megaIcon {
+  font-size: 1.25rem;
+}
+
+.megaLinkText strong {
+  font-size: 0.95rem;
+  color: var(--primary);
+}
+
+/* ── Locations Mega ───────────────────────────────────── */
+.locationsMega {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 3rem;
+  padding: 2rem 0;
+}
+
+.contactMegaSide {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-right: 3rem;
+  border-right: 1px solid #eee;
+}
+
+.contactQuickLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contactQuickLinks a {
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactQuickLinks a:hover {
+  color: var(--gold-dark);
+}
+
+.locationsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.locationsHeader {
+  grid-column: 1 / -1;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0.5rem;
+}
+
+.locationsHeader strong {
+  display: block;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.locationsHeader span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.locationItem {
+  display: block;
+  padding: 0.75rem 1rem;
+  background: var(--bg-slate);
+  border-radius: var(--border-radius);
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.locationItem:hover {
+  background: var(--gold);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+/* ── About Mega ───────────────────────────────────────── */
+.aboutMega {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+.aboutCard {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding-right: 4rem;
+  border-right: 1px solid #eee;
+}
+
+.aboutImg {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.aboutCard strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.aboutCard p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0.25rem 0 0.75rem;
+}
+
+.aboutCard a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  text-decoration: none;
+}
+
+.aboutLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.aboutLinks a {
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.aboutLinks a:hover {
+  color: var(--gold-dark);
+}
+
+/* ── Top Bar ──────────────────────────────────────────── */
+.topBar {
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.75rem;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.topBarInner {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.topBarLeft {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.topBarLink {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.topBarLink:hover {
+  color: #fff;
+}
+
+.topBarRight {
+  opacity: 0.7;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--primary);
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+.mobileDrawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 2000;
+  transition: transform 0.4s ease;
+}
+
+.mobileOpen {
+  transform: translateX(-100%);
+}
+
+.mobileContent {
+  padding: 2rem;
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobileLinks a, .mobileSummary {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  list-style: none; /* Hide default summary arrow in some browsers */
+}
+
+.mobileSummary::-webkit-details-marker {
+  display: none;
+}
+
+.mobileChevron {
+  font-size: 1.2rem;
+  opacity: 0.6;
+  margin-left: 0.2rem;
+}
+
+details[open] .mobileChevron {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.mobileSubLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-left: 1rem;
+  margin-top: 1rem;
+  border-left: 2px solid var(--bg-slate);
+}
+
+.mobileDivider {
+  display: none; /* Replaced by sub-details */
+}
+
+.mobileSubDetails {
+  margin-top: 1rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.mobileSubSummary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.mobileSubSummary::-webkit-details-marker {
+  display: none;
+}
+
+.mobileStateLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem 0 0 1rem;
+}
+
+.mobileStateLinks a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.mobileSubLinks a {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-main);
+}
+
+.mobileSubLinks a strong {
+  color: var(--primary);
+}
+
+.mobileCta {
+  margin-top: 3rem;
+}
+
+@media (max-width: 900px) {
+  .nav, .topBar, .megaMenu, .applyBtn { display: none; }
+  .hamburger { display: flex; }
+  .header { top: 0; }
+}

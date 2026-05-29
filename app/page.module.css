@@ -1,0 +1,686 @@
+/* ── Hero ──────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.heroBg { position: absolute; inset: 0; overflow: hidden; }
+.heroImg {
+  animation: heroZoom 18s ease-in-out infinite alternate;
+}
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    108deg,
+    rgba(4, 10, 24, 0.94) 0%,
+    rgba(11, 28, 61, 0.80) 50%,
+    rgba(11, 28, 61, 0.48) 100%
+  );
+}
+.heroContent {
+  position: relative;
+  z-index: 1;
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+  max-width: 860px;
+}
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(201, 168, 76, 0.18);
+  border: 1px solid rgba(201, 168, 76, 0.45);
+  color: var(--gold, #c9a84c);
+  padding: 0.4rem 1.1rem;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.75rem;
+}
+.heroTitle {
+  font-size: clamp(2.8rem, 6.5vw, 4.75rem);
+  color: #fff;
+  margin-bottom: 1.5rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.heroAccent {
+  color: var(--gold, #c9a84c);
+  display: block;
+}
+.heroSubtitle {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 620px;
+}
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.heroTicker {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.heroTickerItem {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.heroTickerDot {
+  color: var(--gold, #c9a84c);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+/* ── Stats Bar ─────────────────────────────────────────── */
+.statsBar {
+  background: var(--primary, #0b1c3d);
+  padding: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+.statsGrid {
+  display: flex;
+  align-items: stretch;
+}
+.stat {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+.statDivider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  align-self: stretch;
+  margin: 1.5rem 0;
+}
+.statInner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 2.25rem 1rem;
+  text-align: center;
+  transition: background 0.25s;
+}
+.statInner:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+.statNum {
+  font-family: var(--font-heading, serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--gold, #c9a84c);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.statLabel {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+/* ── Loan Programs ─────────────────────────────────────── */
+.loanSection {
+  background: linear-gradient(180deg, #fff 0%, var(--bg-light, #f7f8fa) 100%);
+}
+.loanGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+.loanCard {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem 1.75rem 1.75rem;
+  box-shadow: 0 4px 20px rgba(11, 28, 61, 0.07);
+  border: 1.5px solid rgba(11, 28, 61, 0.06);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+}
+.loanCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.loanCard:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 60px rgba(11, 28, 61, 0.14);
+  border-color: rgba(201, 168, 76, 0.5);
+}
+.loanCard:hover::after {
+  opacity: 1;
+}
+.loanIconBubble {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.loanCard:hover .loanIconBubble {
+  transform: scale(1.08) rotate(-2deg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+.loanEmoji {
+  font-size: 2.1rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+.loanCardBody {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.6rem;
+}
+.loanCardTop {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+.loanTitle {
+  font-size: 1.1rem;
+  font-family: var(--font-heading, serif);
+  color: var(--primary, #0b1c3d);
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.loanTag {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--gold, #c9a84c), var(--gold-light, #e2c06d));
+  color: #fff;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.loanDesc {
+  font-size: 0.84rem;
+  color: var(--text-muted, #5a6478);
+  line-height: 1.7;
+  flex: 1;
+  margin: 0;
+}
+.loanArrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--gold, #c9a84c);
+  margin-top: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: gap 0.2s ease;
+}
+.loanCard:hover .loanArrow {
+  gap: 0.5rem;
+}
+
+/* ── Who We Serve ──────────────────────────────────────── */
+.audienceSection {
+  background: linear-gradient(160deg, #060e1f 0%, #0b1c3d 60%, #0e2448 100%);
+  padding: 5rem 0 6rem;
+}
+.audienceGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.audienceCard {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  height: 420px;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+.audienceCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+.audienceBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.audienceCard:hover .audienceBg {
+  transform: scale(1.07);
+}
+.audienceOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(4, 10, 24, 0.96) 0%,
+    rgba(4, 10, 24, 0.55) 55%,
+    rgba(4, 10, 24, 0.1) 100%
+  );
+  transition: background 0.4s;
+}
+.audienceCard:hover .audienceOverlay {
+  background: linear-gradient(
+    to top,
+    rgba(4, 10, 24, 0.97) 0%,
+    rgba(4, 10, 24, 0.65) 55%,
+    rgba(4, 10, 24, 0.2) 100%
+  );
+}
+.audienceContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.25rem 2rem;
+}
+.audienceSubtitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold, #c9a84c);
+  margin-bottom: 0.6rem;
+}
+.audienceTitle {
+  font-size: 1.65rem;
+  font-family: var(--font-heading, serif);
+  color: #fff;
+  margin-bottom: 0.85rem;
+  line-height: 1.15;
+}
+.audienceDesc {
+  font-size: 0.87rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.audienceCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #fff;
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  transition: border-color 0.25s, color 0.25s, gap 0.25s;
+}
+.audienceCard:hover .audienceCta {
+  border-color: var(--gold, #c9a84c);
+  color: var(--gold, #c9a84c);
+  gap: 0.7rem;
+}
+
+/* ── Why Rob ───────────────────────────────────────────── */
+.whyRob { background: var(--bg-light, #f7f8fa); }
+.whyContent { display: flex; flex-direction: column; gap: 1rem; }
+.whyActions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.robPhotoWrap {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 70px rgba(11, 28, 61, 0.22);
+}
+.robPhoto { object-fit: cover; width: 100%; height: auto; border-radius: 24px; }
+.robBadge {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 1.75rem;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.14);
+}
+.robBadge strong { font-size: 0.95rem; color: var(--primary, #0b1c3d); }
+.robBadge span { font-size: 0.78rem; color: var(--text-muted, #5a6478); }
+
+/* ── Trust Partner Strip ───────────────────────────────── */
+.trustStrip {
+  background: var(--bg-slate, #eef0f5);
+  padding: 3.5rem 0;
+  border-top: 1px solid rgba(11, 28, 61, 0.07);
+  border-bottom: 1px solid rgba(11, 28, 61, 0.07);
+}
+.trustTitle {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted, #5a6478);
+  margin-bottom: 2.25rem;
+}
+.trustLogos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem 3.5rem;
+}
+.trustLogoLink {
+  display: flex;
+  align-items: center;
+  transition: opacity 0.3s, transform 0.3s;
+  opacity: 0.45;
+  filter: grayscale(100%);
+}
+.trustLogoLink:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.06);
+}
+.trustLogo {
+  max-height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ── Steps ─────────────────────────────────────────────── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.step {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.75rem 2.25rem;
+  box-shadow: 0 4px 20px rgba(11, 28, 61, 0.07);
+  border: 1.5px solid rgba(11, 28, 61, 0.06);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.step:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(11, 28, 61, 0.12);
+  border-color: rgba(201, 168, 76, 0.4);
+}
+.stepNum {
+  font-family: var(--font-heading, serif);
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--gold, #c9a84c);
+  opacity: 0.25;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.04em;
+}
+.stepTitle { font-size: 1.2rem; margin-bottom: 0.65rem; }
+.stepDesc { font-size: 0.9rem; color: var(--text-muted, #5a6478); margin: 0; line-height: 1.7; }
+.stepsCta { text-align: center; }
+
+/* ── Service Areas ─────────────────────────────────────── */
+.areas { background: #fff; }
+.stateGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+.stateChip {
+  padding: 0.55rem 1.4rem;
+  background: var(--bg-slate, #eef0f5);
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary, #0b1c3d);
+  border: 1.5px solid rgba(11, 28, 61, 0.08);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.stateChip:hover {
+  background: var(--primary, #0b1c3d);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+.areasNote { text-align: center; font-size: 0.875rem; color: var(--text-muted, #5a6478); }
+
+/* ── State Licensing ───────────────────────────────────── */
+.licensingSection {
+  background: linear-gradient(160deg, #060e1f 0%, #0b1c3d 100%);
+  padding: 5rem 0;
+}
+.licenseGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.licenseCard {
+  background: rgba(255, 255, 255, 0.055);
+  border: 1.5px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+}
+.licenseCard:hover {
+  background: rgba(201, 168, 76, 0.1);
+  border-color: rgba(201, 168, 76, 0.35);
+  transform: translateY(-3px);
+}
+.licenseIcon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
+.licenseState {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+.licenseNum {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.03em;
+}
+.licenseDisclaimer {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+}
+
+/* ── Contact Form ──────────────────────────────────────── */
+.contactSection {
+  background: linear-gradient(135deg, #04080f 0%, #0b1c3d 50%, #0e2448 100%);
+  padding: 5.5rem 0;
+}
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 5rem;
+  align-items: center;
+}
+.contactInfo { display: flex; flex-direction: column; gap: 0.75rem; }
+.contactInfo h2 { color: #fff; }
+.contactInfo p { color: rgba(255, 255, 255, 0.65); }
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+.contactDetailItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contactDetailItem:hover { color: var(--gold, #c9a84c); }
+.contactDetailIcon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+.contactApplyBtn {
+  margin-top: 1.25rem;
+  align-self: flex-start;
+}
+.contactFormCard {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+.contactFormHeading {
+  color: #fff;
+  margin-bottom: 1.75rem;
+  font-family: var(--font-body, sans-serif);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.contactForm { display: flex; flex-direction: column; gap: 0; }
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.formGroup { margin-bottom: 1.1rem; }
+.formGroup label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.45rem;
+}
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.93rem;
+  color: #fff;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--gold, #c9a84c);
+  background: rgba(255, 255, 255, 0.11);
+}
+.formGroup textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+.contactSubmit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 1280px) {
+  .loanGrid { grid-template-columns: repeat(4, 1fr); }
+  .licenseGrid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 1100px) {
+  .loanGrid { grid-template-columns: repeat(2, 1fr); }
+  .contactGrid { gap: 3rem; }
+}
+@media (max-width: 1024px) {
+  .statsGrid { flex-wrap: wrap; }
+  .stat { min-width: 50%; }
+  .stepsGrid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .audienceGrid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .audienceCard { height: 320px; }
+  .licenseGrid { grid-template-columns: repeat(3, 1fr); }
+  .contactGrid { grid-template-columns: 1fr; gap: 3rem; }
+}
+@media (max-width: 768px) {
+  .hero { min-height: 85vh; }
+  .heroTitle { font-size: clamp(2.2rem, 8vw, 3.2rem); }
+  .heroActions { flex-direction: column; }
+  .loanGrid { grid-template-columns: 1fr; }
+  .statsGrid { flex-wrap: wrap; }
+  .stat { min-width: 50%; }
+  .statDivider { display: none; }
+  .statInner { padding: 1.5rem 0.75rem; }
+  .statNum { font-size: 2rem; }
+  .licenseGrid { grid-template-columns: repeat(2, 1fr); }
+  .contactFormCard { padding: 2rem 1.5rem; }
+  .formRow { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .licenseGrid { grid-template-columns: repeat(2, 1fr); }
+  .stat { min-width: 50%; }
+}
